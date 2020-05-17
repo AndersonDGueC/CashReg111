@@ -1,4 +1,15 @@
-var denom = [
+/**
+ * @fileoverview Caja registradora, con valores de denominacion alamcenados para intercambio
+ * @author Anderson Danilo Guerrero Calpa <adguerreroc@unal.edu.co>
+ * @copyright Academia Geek
+ * @param {number, number,array}
+ * @return {object}
+ * 
+ * 
+ * 
+ * Acontinuacion las nominaciones de cada billete almacendao en un arreglo de objetos
+ */
+var difNom = [
     { name: "ONE HUNDRED", val: 100.0 },
     { name: "TWENTY", val: 20.0 },
     { name: "TEN", val: 10.0 },
@@ -11,7 +22,7 @@ var denom = [
   ];
   
   let cashReg=(price, cash, cid)=>{
-    var out = {status:null, change:[]}
+    var out = {status:null, change:[]};
     var change = cash-price;
     
     //transformacion del arreglo en un objeto
@@ -20,20 +31,20 @@ var denom = [
         acum[ind[0]]= ind[1];
         return acum;
     },
-    { total:0});
+    { tot:0});
     //Encargado del cambio exacto (change)
-    if(reg.total === change){
+    if(reg.tot === change){
         out.status="CLOSED";
-        out.change=cid;
+        out.change=cid; 
         return out;
     }
     //encargado de verificar la insuficiencia de efectivo
-    if(reg.total < change){
+    if(reg.tot < change){
         out.status="INSUFFICIENT_FUNDS";
         return out;
     }
 
-    var arrChange=denom.reduce((acum,ind)=>{
+    var arrChange=difNom.reduce((acum,ind)=>{
         var vlr=0;
         //mientras haya dinero de esta denominacion en la caja y mientras 
         //la denomicion es mayor que el cambio restante
@@ -60,15 +71,19 @@ var denom = [
     //El cambio o vueltas
     out.status="OPEN";
     out.change=arrChange;
-
-  }
-
+    return out;
+}
+  
+  
+//evento que se llamada atraves de la interfaz
   document.querySelector('#btn_enviar').addEventListener('click',(e)=>{
       e.preventDefault();
     let precio=parseFloat(document.querySelector('#precio').value);
     let cambio=parseFloat(document.querySelector('#efectivo').value);
-    let nomDine=document.querySelector('#cant_nom').value.split("");
-    console.log(nomDine);
+    //utilizamos JSON.parse() para convertir un dato serializado como string a un arreglo u objeto.
+    let nomDine=JSON.parse(document.querySelector('#cant_nom').value);
     let salida=cashReg(precio,cambio,nomDine);
-    document.querySelector('#result').innerHTML=`El resultado es: ${salida}`
-  })
+    console.log(salida);
+    document.querySelector('#result').innerHTML=`El resultado es: ${salida.status} y ${salida.change}`
+
+})
