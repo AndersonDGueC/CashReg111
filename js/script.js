@@ -47,7 +47,7 @@ var difNom = [
     var arrChange=difNom.reduce((acum,ind)=>{
         var vlr=0;
         //mientras haya dinero de esta denominacion en la caja y mientras 
-        //la denomicion es mayor que el cambio restante
+        //el cambio se mayor a los valores de la denominacion.
         while(reg[ind.name]>0 && change>=ind.val){
             change-=ind.val;
             reg[ind.name]-=ind.val;
