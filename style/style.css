@@ -1,0 +1,12 @@
+body{
+    background-color: royalblue;
+    text-align: center;
+    color: white;
+    
+}
+form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

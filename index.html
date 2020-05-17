@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css" type="text/css">
+    <title>Cash_reg</title>
+</head>
+<body>
+    <header><h1>Bienvenidos al cambiador de billetes</h1></header>
+    <section>
+        <h2>Ingrese los valores pedidos a continuación</h2>
+        <form>
+        <label for="price">Precio</label>
+        <input type="text" id="precio"/>
+        <label for="efectivo">Efectivo</label>
+        <input type="text" id="efectivo"/>
+        <label for="cant_nom">Cantidad de cada nominacion</label>
+        <textarea id="cant_nom" rows="10" cols="50">Escribe el arreglo aquí</textarea>
+        
+        <button id="btn_enviar">Enviar</button>
+        <div id="result">
+
+        </div>
+    </form>
+    </section>
+    <script src="./js/script.js"></script>
+</body>
+</html>
